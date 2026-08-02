@@ -46,7 +46,8 @@ ghosts. Both are CJK ideographs. It is not per-script, not per-length, and not
 precisely why the recommendation below is *avoid non-ASCII test names entirely* rather
 than *avoid the bad ones*.
 
-Filed upstream: (link to be added)
+Upstream report: being prepared for bats-core. The reproduction and the
+uncharacterised-boundary data above are what will be submitted.
 
 ## Why bats' own warning is not enough
 
