@@ -111,6 +111,12 @@ UTF-8 環境では、上記の日本語名はすべて「変換不要」の分�
 
 ---
 
+### 上流への報告
+
+本家 bats-core に報告済みです: [bats-core/bats-core#1233](https://github.com/bats-core/bats-core/issues/1233)
+
+---
+
 ## 4. bats 自身の警告では足りない理由
 
 bats は `# bats warning: Executed N instead of expected M tests` という警告を出し、
