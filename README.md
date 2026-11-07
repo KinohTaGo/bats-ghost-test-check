@@ -46,7 +46,26 @@ ghosts. Both are CJK ideographs. It is not per-script, not per-length, and not
 precisely why the recommendation below is *avoid non-ASCII test names entirely* rather
 than *avoid the bad ones*.
 
-Filed upstream: [bats-core/bats-core#1233](https://github.com/bats-core/bats-core/issues/1233)
+### Upstream status (checked 2026-11-08)
+
+Reported as [bats-core/bats-core#1233](https://github.com/bats-core/bats-core/issues/1233).
+**Fixed upstream** by [bats-core/bats-core#1236](https://github.com/bats-core/bats-core/pull/1236),
+merged 2026-09-12. The fix replaces `[[:alnum:]]` with an explicit `[a-zA-Z0-9]` in both
+places `bats_encode_test_name` used it — the change suggested in the report —
+and adds a regression test that runs non-ASCII test names under `en_US.UTF-8`:
+
+```diff
+-  if [[ ! "$name" =~ [^[:alnum:]\ _-] ]]; then
++  if [[ ! "$name" =~ [^a-zA-Z0-9\ _-] ]]; then
+```
+
+**The fix is not in a release yet.** The latest release is v1.14.0 (2026-07-21), which
+predates the merge. Until you run a bats release that contains #1236, the bug is live on
+UTF-8 machines and the checks below are how you notice it.
+
+After you upgrade, the static check becomes advice rather than a bug detector, but the
+dynamic check stays useful: it compares declared tests with executed ones, so it catches a
+test that never runs for any reason, not only this one.
 
 ## Why bats' own warning is not enough
 
